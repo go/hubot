@@ -4,6 +4,7 @@
 # Commands:
 #   hubot hello - ユーザー名とともにhelloメッセージを出力します
 #   hubot reg <key> <message> - 反応するメッセージを登録します
+#   hubot unreg <message> - 反応するメッセージを削除します
 module.exports = (robot) ->
   robot.respond /hello/i, (msg) ->
     msg.send "こんにちわ #{msg.message.user.name} さん!"
@@ -35,3 +36,11 @@ module.exports = (robot) ->
     robot.brain.save()
  
     msg.send robot.brain.data[key]
+
+  robot.respond /unreg (.*)/i, (msg) ->
+    for key of robot.brain.data
+      if msg.match[1] in robot.brain.data[key]
+        robot.brain.data[key].pop(msg.match[1])
+        msg.send robot.brain.data[key]
+
+    robot.brain.save()
