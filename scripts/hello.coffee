@@ -37,18 +37,18 @@ module.exports = (robot) ->
     robot.brain.data[key].push(msg.match[2])
     robot.brain.save()
  
-    msg.send robot.brain.data[key]
+    msg.send "#{key} に #{msg.match[2]} を登録しました"
 
   robot.respond /unreg (.*)/i, (msg) ->
     for key of robot.brain.data
       if msg.match[1] in robot.brain.data[key]
         robot.brain.data[key].pop(msg.match[1])
-        msg.send robot.brain.data[key]
+        msg.send "#{key} から #{msg.match[1]} を削除しました"
 
     robot.brain.save()
 
   robot.respond /list keywords/i, (msg) ->
-    msg.send Object.keys(robot.brain.data)
+    msg.send "#{Object.keys(robot.brain.data)}"
 
   robot.respond /list msg (.*)/i, (msg) ->
-    msg.send robot.brain.data[msg.match[1]]
+    msg.send "#{robot.brain.data[msg.match[1]]}"
