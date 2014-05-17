@@ -9,7 +9,7 @@ module.exports = (robot) ->
     msg.send "こんにちわ #{msg.message.user.name} さん!"
 
   robot.hear /(.*)/i, (msg) ->
-    if not /hubot/.test(msg.match[1])
+    if not /^hubot/.test(msg.match[1])
       for key in Object.keys(robot.brain.data)
         result = msg.match[1].match(key)
 
