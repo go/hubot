@@ -51,4 +51,4 @@ module.exports = (robot) ->
     msg.send Object.keys(robot.brain.data)
 
   robot.respond /list msg (.*)/i, (msg) ->
-    msg.send robot.brain.data[msg.match[1]
+    msg.send robot.brain.data[msg.match[1]]
