@@ -4,7 +4,7 @@
 # Commands:
 #   hubot hello - Reply hello message with your name
 #   hubot say key - hubot say registerd ramdom comment
-#   hubot regist key value - regist hubot comment
+#   hubot reg key value - regist hubot comment
 module.exports = (robot) ->
   robot.respond /hello/i, (msg) ->
     msg.send "こんにちわ #{msg.message.user.name} さん!"
