@@ -2,9 +2,8 @@
 #   Test command to develop hubot script
 #
 # Commands:
-#   hubot hello - Reply hello message with your name
-#   hubot say key - hubot say registerd ramdom comment
-#   hubot reg key value - regist hubot comment
+#   hubot hello - ユーザー名とともにhelloメッセージを出力します
+#   hubot reg <key> <message> - 反応するメッセージを登録します
 module.exports = (robot) ->
   robot.respond /hello/i, (msg) ->
     msg.send "こんにちわ #{msg.message.user.name} さん!"
