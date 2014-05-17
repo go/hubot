@@ -47,6 +47,9 @@ module.exports = (robot) ->
         robot.brain.get(key).pop(msg.match[1])
         msg.send "\"#{key}\" から \"#{msg.match[1]}\" を削除しました"
 
+      elise if robot.brain.get(key).length == 0
+        robot.brain.remove(key)
+
       robot.brain.save()
 
   robot.respond /list keywords/i, (msg) ->
