@@ -9,12 +9,21 @@ module.exports = (robot) ->
     msg.send "こんにちわ #{msg.message.user.name} さん!"
 
   robot.hear /(.*)/i, (msg) ->
-    key = msg.match[1]
-    if robot.brain.data[key]
-      messages = robot.brain.data[key]
+    if not /hubot/.test(msg.match[1])
+      for key in Object.keys(robot.brain.data)
+        result = msg.match[1].match(key)
 
-      rnd = Math.floor Math.random() * messages.length
-      msg.send messages[rnd]
+        if result
+          messages = robot.brain.data[key]
+          rnd = Math.floor Math.random() * messages.length
+          msg.send messages[rnd]
+
+#    key = msg.match[1]
+#    if robot.brain.data[key]
+#      messages = robot.brain.data[key]
+#
+#      rnd = Math.floor Math.random() * messages.length
+#      msg.send messages[rnd]
 
   robot.respond /reg (.*) (.*)/i, (msg) ->
     key = msg.match[1]
